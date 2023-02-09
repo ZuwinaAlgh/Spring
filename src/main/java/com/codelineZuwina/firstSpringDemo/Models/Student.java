@@ -15,15 +15,12 @@ public class Student{
     Integer studentAge;
     Integer phoneNumber;
     String Email;
-    List<Course>courses;
 
-    public List<Course> getCourses() {
-        return courses;
-    }
+    @ManyToOne
+    @JoinColumn(name="school_id", referencedColumnName = "id")
+    School school;
 
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
-    }
+
 
 
 

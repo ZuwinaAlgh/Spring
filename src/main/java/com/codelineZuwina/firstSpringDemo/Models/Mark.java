@@ -1,9 +1,7 @@
 package com.codelineZuwina.firstSpringDemo.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 public class Mark {
     @Id
@@ -11,6 +9,9 @@ public class Mark {
     Integer id;
     Integer obtainedMarks;
     String grade;
+    @ManyToOne
+    @JoinColumn(name="course_id",referencedColumnName = "id")
+    Course course;
 
     public Integer getId() {
         return id;

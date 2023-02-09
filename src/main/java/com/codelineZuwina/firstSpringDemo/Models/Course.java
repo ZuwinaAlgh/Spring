@@ -9,7 +9,10 @@ public class Course {
     Integer id;
     @Column(name="course_name")
     String name;
-    List<Mark>marks;
+
+    @ManyToOne
+    @JoinColumn(name="student_id",referencedColumnName = "id")
+    Student student;
 
     public Integer getId() {
         return id;
@@ -27,11 +30,5 @@ public class Course {
         this.name = name;
     }
 
-    public List<Mark> getMarks() {
-        return marks;
-    }
 
-    public void setMarks(List<Mark> marks) {
-        this.marks = marks;
-    }
 }

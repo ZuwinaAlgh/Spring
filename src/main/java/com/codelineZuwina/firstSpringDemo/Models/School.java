@@ -9,9 +9,7 @@ public class School {
     Integer id;
     @Column(name="School_name")
     String schoolName;
-    @OneToMany
-    @JoinColumn(referencedColumnName = "id")
-    List<Student> students;
+
 
     public Integer getId() {
         return id;
@@ -29,11 +27,6 @@ public class School {
         this.schoolName = schoolName;
     }
 
-    public List<Student> getStudents() {
-        return students;
+
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-}
