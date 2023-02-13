@@ -107,6 +107,12 @@ public List<School> getAllSchools(){
         return course;
     }
 
+    //get Students by school id
+    @RequestMapping(value = "student/getStudentBySchoolName",method = RequestMethod.GET)
+    public List<Student>getStudentsBySchoolName(@RequestParam String schoolName){
+    return studentService.getStudentsBySchoolName(schoolName);
+    }
+
 
 
 

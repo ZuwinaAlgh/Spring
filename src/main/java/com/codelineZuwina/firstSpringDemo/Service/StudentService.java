@@ -2,6 +2,7 @@ package com.codelineZuwina.firstSpringDemo.Service;
 
 import com.codelineZuwina.firstSpringDemo.Models.School;
 import com.codelineZuwina.firstSpringDemo.Models.Student;
+import com.codelineZuwina.firstSpringDemo.Repositories.SchoolRepository;
 import com.codelineZuwina.firstSpringDemo.Repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import java.util.List;
 public class StudentService {
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    SchoolRepository schoolRepository;
 
     public List<Student> getAllStudents(){
         return studentRepository.getAllStudent();
@@ -28,6 +31,13 @@ public class StudentService {
         return student;
   }
 
+
+    public List<Student> getStudentsBySchoolName(String schoolName){
+        School school=schoolRepository.getSchoolByName(schoolName);
+        Integer schoolId=school.getId();
+        List<Student> studentList=studentRepository.getStudentBySchoolId(schoolId);
+        return  studentList;
+  }
 
 
 }
