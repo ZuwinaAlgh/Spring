@@ -113,6 +113,10 @@ public List<School> getAllSchools(){
     return studentService.getStudentsBySchoolName(schoolName);
     }
 
+    @RequestMapping(value= "course/getCourseByStudentName",method = RequestMethod.GET)
+    public List<Course>getCourseByStudentName(@RequestParam String studentName){
+    return  courseService.getCoursesByStudentName(studentName);
+    }
 
 
 

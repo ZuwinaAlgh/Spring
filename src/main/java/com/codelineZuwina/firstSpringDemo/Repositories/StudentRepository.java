@@ -24,5 +24,7 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     List<Student> getStudentBySchoolId(@Param("id") Integer id);
 
 
+
+
 }
 

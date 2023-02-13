@@ -32,7 +32,7 @@ public class StudentService {
   }
 
 
-    public List<Student> getStudentsBySchoolName(String schoolName){
+    public List<Student> getStudentsBySchoolName(String schoolName){    //get students by school name
         School school=schoolRepository.getSchoolByName(schoolName);
         Integer schoolId=school.getId();
         List<Student> studentList=studentRepository.getStudentBySchoolId(schoolId);
