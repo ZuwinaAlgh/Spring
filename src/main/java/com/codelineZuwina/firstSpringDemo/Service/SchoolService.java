@@ -14,7 +14,20 @@ public class SchoolService {
     public List<School> getAllSchools(){
         return schoolRepository.getAllSchools();
 
+    }
 
+    public School getSchoolById(Integer id){              //get school by id
+        School school=schoolRepository.getSchoolById(id);
+        return school;
+    }
+
+    public School getSchoolByName(String School_name){
+        School school=schoolRepository.getSchoolByName(School_name);
+        return school;
 
     }
+
+
+
+
 }

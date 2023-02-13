@@ -16,4 +16,18 @@ public class StudentService {
 
     public List<Student> getAllStudents(){
         return studentRepository.getAllStudent();
-}}
+}
+
+    public Student getStudentById(Integer id){
+        Student student=studentRepository.getStudentById(id);
+        return student;
+    }
+
+  public Student getStudentByStudentName(String student_Name){
+        Student student=studentRepository.getStudentByStudentName(student_Name);
+        return student;
+  }
+
+
+
+}

@@ -4,6 +4,7 @@ import com.codelineZuwina.firstSpringDemo.Models.School;
 import com.codelineZuwina.firstSpringDemo.Models.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,4 +14,12 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     @Query(value="SELECT s from Student s")
     List<Student> getAllStudent();
 
+    @Query(value="SELECT s from Student s Where s.id = :id")
+    Student getStudentById(@Param("id") Integer id);
+
+    @Query(value="SELECT s from Student s Where s.studentName = :studentName")
+    Student getStudentByStudentName(@Param("studentName") String student_Name);
+
+
 }
+
