@@ -33,6 +33,11 @@ public class SchoolService {
 
     }
 
+    //get all school is In Active
+    public List<School> getAllSchoolIsInActive(){
+        return  schoolRepository.getAllSchoolsIsInActive();
+    }
+
 
 
 
