@@ -40,7 +40,7 @@ public class SchoolController {
     }
 
     //get all school is active
-    @RequestMapping(value = "school/getAllSchoolIsActive",method = RequestMethod.GET)
+    @RequestMapping(value = "getAllSchoolIsActive",method = RequestMethod.GET)
     public List<School> getAllSchoolsIsActive(){
         List<School> schoolList= schoolService.getAllSchoolsIsActive();
         return schoolList;
