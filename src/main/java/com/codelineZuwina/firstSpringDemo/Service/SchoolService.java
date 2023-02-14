@@ -27,6 +27,12 @@ public class SchoolService {
 
     }
 
+    //get all school is Active
+    public List<School> getAllSchoolsIsActive() {
+        return  schoolRepository.getAllSchoolsIsActive();
+
+    }
+
 
 
 
