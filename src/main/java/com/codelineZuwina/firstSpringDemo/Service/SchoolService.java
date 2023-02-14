@@ -44,6 +44,12 @@ public class SchoolService {
 
     }
 
+    //Update is Active
+    public School updateIsActive(Integer id){
+        School school=schoolRepository.updateIsActive(id);
+        return school;
+    }
+
 
 
 

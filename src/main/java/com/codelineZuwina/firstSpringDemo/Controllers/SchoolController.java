@@ -60,4 +60,13 @@ public class SchoolController {
         List<School> school=schoolService.getLatestRowInSchool();
         return school;
     }
+
+    // Update is Active
+    @RequestMapping(value = "updateIsActive",method = RequestMethod.GET)
+    public School updateIsActive(@RequestParam Integer id) {
+        School school= schoolService.updateIsActive(id);
+        return school;
+    }
+
+
 }
