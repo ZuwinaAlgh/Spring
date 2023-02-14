@@ -38,6 +38,13 @@ public class SchoolService {
         return  schoolRepository.getAllSchoolsIsInActive();
     }
 
+    // get Latest Row in School table
+    public List<School> getLatestRowInSchool(){
+        return  schoolRepository.getLatestRow();
+
+    }
+
+
 
 
 

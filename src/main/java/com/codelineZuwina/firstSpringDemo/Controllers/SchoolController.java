@@ -53,4 +53,11 @@ public class SchoolController {
         List<School>schoolList=schoolService.getAllSchoolIsInActive();
         return schoolList;
     }
+
+    //get Latest Row in School
+    @RequestMapping(value = "getLatestRowSchool",method = RequestMethod.GET)
+    public List<School> getLatestRowInSchool(){
+        List<School> school=schoolService.getLatestRowInSchool();
+        return school;
+    }
 }
