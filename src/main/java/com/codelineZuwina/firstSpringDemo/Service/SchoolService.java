@@ -50,6 +50,12 @@ public class SchoolService {
         return school;
     }
 
+    // Delete by id
+    public School deleteSchoolById(Integer id){
+        School school=schoolRepository.deleteSchoolById(id);
+        return  school;
+    }
+
 
 
 

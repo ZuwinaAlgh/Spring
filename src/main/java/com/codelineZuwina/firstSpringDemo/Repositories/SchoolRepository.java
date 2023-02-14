@@ -29,10 +29,12 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
 
     @Query(value ="SELECT s From School s Where s.id=(SELECT MAX(s.id) From School s)")  //Query to get Latest Row
     List<School> getLatestRow();
-    @Modifying(clearAutomatically = true)
-    @Transactional
+    @Modifying()
     @Query(value = "UPDATE School s SET s.isActive=False Where s.id= :id")         //Update is Active
     School updateIsActive(@Param("id") Integer id);
+
+    @Query(value = "DELETE from School s Where s.id= :id")             //Delete query by id
+    School deleteSchoolById(@Param("id") Integer id);
 
 
 

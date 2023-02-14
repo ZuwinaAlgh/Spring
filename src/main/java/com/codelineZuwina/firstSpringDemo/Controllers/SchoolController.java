@@ -67,6 +67,11 @@ public class SchoolController {
         School school= schoolService.updateIsActive(id);
         return school;
     }
+    @RequestMapping(value = "deleteSchoolById",method = RequestMethod.GET)
+    public School deleteSchoolById(@RequestParam Integer id){
+        School school=schoolService.deleteSchoolById(id);
+        return school;
+    }
 
 
 }
