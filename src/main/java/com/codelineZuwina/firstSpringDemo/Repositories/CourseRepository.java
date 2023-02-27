@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CourseRepository extends CrudRepository<Course,Integer> {
+public interface CourseRepository extends CrudRepository<Course,Integer> {                //depandancy injection(to access the class with out initulize it)  setter / constracter/ field
 
     @Query(value="SELECT s from Course s")
     List<Course> getAllCourse();

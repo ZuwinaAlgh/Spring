@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class SchoolService {
     @Autowired
-     SchoolRepository schoolRepository;
+     SchoolRepository schoolRepository;                       //it is referance of interface ,, we can create a object by adding {} ..> schoolRepositry{}
     public List<School> getAllSchools(){
         return schoolRepository.getAllSchools();
 
@@ -54,6 +54,12 @@ public class SchoolService {
     public School deleteSchoolById(Integer id){
         School school=schoolRepository.deleteSchoolById(id);
         return  school;
+    }
+
+    // Delete All
+    public List<School> deleteAllSchool(){
+        return schoolRepository.deleteAllSchool();
+
     }
 
 

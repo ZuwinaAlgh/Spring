@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController                             //controll that link (localhost:8080/school/getAll)
+                                           //localhost...> means this localhost running in my server using one port 8080
 @RequestMapping(value="school")
 public class SchoolController {
     @Autowired
@@ -26,7 +27,7 @@ public class SchoolController {
 
     //get school by id
     @RequestMapping(value="school/getById", method =RequestMethod.GET)
-    public School getSchoolById(@RequestParam Integer id){
+    public School getSchoolById(@RequestParam Integer id){                          //@RequestParm(veraible come from the link that used it)
         School school=schoolService.getSchoolById(id);
         return school;
 
@@ -71,6 +72,11 @@ public class SchoolController {
     public School deleteSchoolById(@RequestParam Integer id){
         School school=schoolService.deleteSchoolById(id);
         return school;
+    }
+    @RequestMapping(value = "deleteAllSchool", method = RequestMethod.GET)
+    public List<School> deleteAll(){
+        List<School> schoolList=schoolService.deleteAllSchool();
+        return schoolList;
     }
 
 
