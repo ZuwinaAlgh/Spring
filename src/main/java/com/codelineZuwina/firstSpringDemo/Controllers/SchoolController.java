@@ -1,6 +1,7 @@
 package com.codelineZuwina.firstSpringDemo.Controllers;
 
 import com.codelineZuwina.firstSpringDemo.Models.School;
+import com.codelineZuwina.firstSpringDemo.RequestObject.SchoolRequestForCreateDateUpdate;
 import com.codelineZuwina.firstSpringDemo.Service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 @RestController                             //controll that link (localhost:8080/school/getAll)
@@ -34,7 +37,7 @@ public class SchoolController {
     }
 
     //get School by School name
-    @RequestMapping(value = "school/getBySchoolName",method = RequestMethod.GET)
+    @RequestMapping(value = "school/getBySchoolName",method = RequestMethod.GET)                     //get School by School name
     public School getSchoolByName(@RequestParam String School_name) {
         School school= schoolService.getSchoolByName(School_name);
         return school;
@@ -62,22 +65,44 @@ public class SchoolController {
         return school;
     }
 
-    // Update is Active
-    @RequestMapping(value = "updateIsActive",method = RequestMethod.GET)
+    @RequestMapping(value = "updateIsActive",method = RequestMethod.GET)              //  Update is Active
     public School updateIsActive(@RequestParam Integer id) {
         School school= schoolService.updateIsActive(id);
         return school;
     }
-    @RequestMapping(value = "deleteSchoolById",method = RequestMethod.GET)
-    public School deleteSchoolById(@RequestParam Integer id){
-        School school=schoolService.deleteSchoolById(id);
+
+    @RequestMapping(value = "getSchoolByCreatedDate",method = RequestMethod.GET)               //get School By CreatedDate
+    public School getSchoolByCreatedDate(@RequestParam Date createdDate) {
+        School school= schoolService.getSchoolByCreatedDate(createdDate);
         return school;
     }
-    @RequestMapping(value = "deleteAllSchool", method = RequestMethod.GET)
-    public List<School> deleteAll(){
-        List<School> schoolList=schoolService.deleteAllSchool();
-        return schoolList;
-    }
+
+//    @RequestMapping(value="UpdateCreatedDateByUserInput")
+//           public void setCreatedDateByUserInput(@RequestParam SchoolRequestForCreateDateUpdate data) throws ParseException {
+//        schoolService.setCreatedDateByUserInput(data.getDate(), data.getId());
+//    }
+
+
+
+//    @RequestMapping(value = "deleteSchoolById",method = RequestMethod.GET)             //delete by School id
+//    public School deleteSchoolById(@RequestParam Integer id){
+//        School school=schoolService.deleteSchoolById(id);
+//        return school;
+//    }
+
+//    @RequestMapping(value = "deleteAllSchool", method = RequestMethod.GET)                //delete all school
+//    public List<School> deleteAll(){
+//        List<School> schoolList=schoolService.deleteAllSchool();
+//        return schoolList;
+//    }
+
+//    @RequestMapping(value = "school/deleteSchoolByColumnName",method = RequestMethod.GET)             //delete School by Column name
+//    public School deleteSchoolByColumnName(@RequestParam String schoolName) {
+//        School school1= schoolService.deleteSchoolByColumnName(schoolName);
+//        return school1;
+//    }
+
+
 
 
 }
