@@ -15,69 +15,75 @@ import java.util.regex.Pattern;
 @Service
 public class SchoolService {
     @Autowired
-     SchoolRepository schoolRepository;                       //it is referance of interface ,, we can create a object by adding {} ..> schoolRepositry{}
-    public List<School> getAllSchools(){
+    SchoolRepository schoolRepository;                       //it is referance of interface ,, we can create a object by adding {} ..> schoolRepositry{}
+
+    public List<School> getAllSchools() {
         return schoolRepository.getAllSchools();
 
     }
 
-    public School getSchoolById(Integer id){              //get school by id
-        School school=schoolRepository.getSchoolById(id);
+    public School getSchoolById(Integer id) {              //get school by id
+        School school = schoolRepository.getSchoolById(id);
         return school;
     }
 
-    public School getSchoolByName(String School_name){                             //get School by School name
-        School school=schoolRepository.getSchoolByName(School_name);
+    public School getSchoolByName(String School_name) {                             //get School by School name
+        School school = schoolRepository.getSchoolByName(School_name);
         return school;
 
     }
 
     public List<School> getAllSchoolsIsActive() {               //get all school is Active
-        return  schoolRepository.getAllSchoolsIsActive();
+        return schoolRepository.getAllSchoolsIsActive();
 
     }
 
-    public List<School> getAllSchoolIsInActive(){               //get all school is In Active
-        return  schoolRepository.getAllSchoolsIsInActive();
+    public List<School> getAllSchoolIsInActive() {               //get all school is In Active
+        return schoolRepository.getAllSchoolsIsInActive();
     }
 
-    public List<School> getLatestRowInSchool(){                 // get Latest Row in School table
-        return  schoolRepository.getLatestRow();
+    public List<School> getLatestRowInSchool() {                 // get Latest Row in School table
+        return schoolRepository.getLatestRow();
 
     }
 
-    public School updateIsActive(Integer id){                       //Update is Active
-        School school=schoolRepository.updateIsActive(id);
+    public School updateIsActive(Integer id) {                       //Update is Active
+        School school = schoolRepository.updateIsActive(id);
         return school;
     }
 
-    public School getSchoolByCreatedDate(Date createdDate){                      //get School By Created Date
-        School school=schoolRepository.getSchoolByCreatedDate(createdDate);
+    public School getSchoolByCreatedDate(Date createdDate) {                      //get School By Created Date
+        School school = schoolRepository.getSchoolByCreatedDate(createdDate);
         return school;
     }
 
-    public School getSchoolByUpdatedDate(Date updatedDate){                      //get School By updated Date
-        School school=schoolRepository.getSchoolByUpdatedDate(updatedDate);
+    public School getSchoolByUpdatedDate(Date updatedDate) {                      //get School By updated Date
+        School school = schoolRepository.getSchoolByUpdatedDate(updatedDate);
         return school;
     }
 
-    public void deleteSchoolById(Integer id){                     // Delete by id
-        School school=schoolRepository.getSchoolById(id);
+    public void deleteSchoolById(Integer id) {                     // Delete by id
+        School school = schoolRepository.getSchoolById(id);
         school.setActive(false);
         schoolRepository.save(school);
     }
 
-        public void deleteAllSchool(){                  // Delete All
+    public void deleteAllSchool() {                  // Delete All
         schoolRepository.deleteAllSchool();
     }
 
-    public List<School> getSchoolCreatedAfterDate(String StringCreatedDate ) throws ParseException{                //get School Created After Date
-        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
-        Date date=format.parse(StringCreatedDate);
-        List<School> schoolList=schoolRepository.getSchoolCreatedAfterDate(date);
+    public List<School> getSchoolCreatedAfterDate(String StringCreatedDate) throws ParseException {                //get School Created After Date
+        DateFormat format = new SimpleDateFormat("yyyy-MM-DD");
+        Date date = format.parse(StringCreatedDate);
+        List<School> schoolList = schoolRepository.getSchoolCreatedAfterDate(date);
         return schoolList;
     }
 
+    public void deleteSchoolBySchoolName(String schoolName) {                    //delete School By School Name
+        School school1 = schoolRepository.getSchoolByName(schoolName);
+        school1.setActive(true);
+        schoolRepository.save(school1);
+    }
 
 
 //    public void setCreatedDateByUserInput(String stringDate, Integer id) throws ParseException {
@@ -89,14 +95,11 @@ public class SchoolService {
 //    }
 
 
-
-//    public School deleteSchoolByColumnName(String schoolName){                     // //deleteBy<Column Name>
-//        School school1=schoolRepository.deleteSchoolByColumnName(schoolName);
-//        return school1;
-//    }
-
-
-
-
-
 }
+
+
+
+
+
+
+
