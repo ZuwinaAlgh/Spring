@@ -56,6 +56,13 @@ public class SchoolService {
         return school;
     }
 
+    public School getSchoolByUpdatedDate(Date updatedDate){                      //get School By updated Date
+        School school=schoolRepository.getSchoolByUpdatedDate(updatedDate);
+        return school;
+    }
+
+
+
 //    public void setCreatedDateByUserInput(String stringDate, Integer id) throws ParseException {
 //        DateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
 //        Date javaDate=formatter.parse(stringDate);

@@ -77,6 +77,12 @@ public class SchoolController {
         return school;
     }
 
+    @RequestMapping(value = "school/getSchoolByUpdatedDate",method = RequestMethod.GET)               //get School By updated date
+    public School getSchoolByUpdatedDate(@RequestParam Date updatedDate) {
+        School school= schoolService.getSchoolByUpdatedDate(updatedDate);
+        return school;
+    }
+
 //    @RequestMapping(value="UpdateCreatedDateByUserInput")
 //           public void setCreatedDateByUserInput(@RequestParam SchoolRequestForCreateDateUpdate data) throws ParseException {
 //        schoolService.setCreatedDateByUserInput(data.getDate(), data.getId());
