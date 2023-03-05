@@ -61,6 +61,16 @@ public class SchoolService {
         return school;
     }
 
+    public void deleteSchoolById(Integer id){                     // Delete by id
+        School school=schoolRepository.getSchoolById(id);
+        school.setActive(false);
+        schoolRepository.save(school);
+    }
+
+        public void deleteAllSchool(){                  // Delete All
+        schoolRepository.deleteAllSchool();
+    }
+
 
 
 //    public void setCreatedDateByUserInput(String stringDate, Integer id) throws ParseException {
@@ -72,17 +82,6 @@ public class SchoolService {
 //    }
 
 
-    public void deleteSchoolById(Integer id){                     // Delete by id
-        School school=schoolRepository.getSchoolById(id);
-        school.setActive(false);
-        schoolRepository.save(school);
-    }
-
-
-//    public List<School> deleteAllSchool(){                             // Delete All
-//        return schoolRepository.deleteAllSchool();
-//
-//    }
 
 //    public School deleteSchoolByColumnName(String schoolName){                     // //deleteBy<Column Name>
 //        School school1=schoolRepository.deleteSchoolByColumnName(schoolName);

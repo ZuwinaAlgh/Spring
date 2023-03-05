@@ -40,9 +40,10 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
     School getSchoolByUpdatedDate(@Param("updatedDate") Date updatedDate);
 
 
-
-//   @Query(value = "UPDATE from School s SET s.isActive=False")             //Delete All(Update)
-//    List<School> deleteAllSchool();
+   @Modifying
+   @Transactional
+   @Query(value="UPDATE School s SET s.isActive=False")                               //Delete All(Update)
+    void deleteAllSchool();
 
 //   @Query(value = "UPDATE school s Set s.isActive=False where s.schoolName= :School_name")               //deleteBy<Column Name>
 //    School deleteSchoolByColumnName(@Param("School_name") String schoolName);
