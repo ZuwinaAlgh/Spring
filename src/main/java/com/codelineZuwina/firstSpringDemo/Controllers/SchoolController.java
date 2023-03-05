@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -91,12 +92,17 @@ public class SchoolController {
     public void deleteAll(){
        schoolService.deleteAllSchool();
     }
+    @RequestMapping(value = "getSchoolCreatedAfterDate" , method = RequestMethod.GET)
+    public List<School> getSchoolCreatedAfterDate(@RequestParam String createdDate) throws ParseException{         //get School Created After Date
+        List<School> schoolList=new ArrayList<>();
+        schoolList=schoolService.getSchoolCreatedAfterDate(createdDate);
+        return schoolList;
+    }
 
 //    @RequestMapping(value="UpdateCreatedDateByUserInput")
 //           public void setCreatedDateByUserInput(@RequestParam SchoolRequestForCreateDateUpdate data) throws ParseException {
 //        schoolService.setCreatedDateByUserInput(data.getDate(), data.getId());
 //    }
-
 
 
 

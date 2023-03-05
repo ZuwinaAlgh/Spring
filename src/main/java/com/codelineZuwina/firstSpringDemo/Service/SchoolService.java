@@ -71,6 +71,13 @@ public class SchoolService {
         schoolRepository.deleteAllSchool();
     }
 
+    public List<School> getSchoolCreatedAfterDate(String StringCreatedDate ) throws ParseException{                //get School Created After Date
+        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
+        Date date=format.parse(StringCreatedDate);
+        List<School> schoolList=schoolRepository.getSchoolCreatedAfterDate(date);
+        return schoolList;
+    }
+
 
 
 //    public void setCreatedDateByUserInput(String stringDate, Integer id) throws ParseException {
