@@ -51,15 +51,14 @@ public class SchoolController {
 
     }
 
-    //get All Schools is In Active
-    @RequestMapping(value = "getAllSchoolsIsInActive",method = RequestMethod.GET)
+    @RequestMapping(value = "getAllSchoolsIsInActive",method = RequestMethod.GET)       //get All Schools is In Active
     public  List<School> getAllSchoolsIsInActive(){
         List<School>schoolList=schoolService.getAllSchoolIsInActive();
         return schoolList;
     }
 
-    //get Latest Row in School
-    @RequestMapping(value = "getLatestRowSchool",method = RequestMethod.GET)
+
+    @RequestMapping(value = "getLatestRowSchool",method = RequestMethod.GET)        //get Latest Row in School
     public List<School> getLatestRowInSchool(){
         List<School> school=schoolService.getLatestRowInSchool();
         return school;
@@ -90,11 +89,10 @@ public class SchoolController {
 
 
 
-//    @RequestMapping(value = "deleteSchoolById",method = RequestMethod.GET)             //delete by School id
-//    public School deleteSchoolById(@RequestParam Integer id){
-//        School school=schoolService.deleteSchoolById(id);
-//        return school;
-//    }
+    @RequestMapping(value = "deleteSchoolById",method = RequestMethod.GET)             //delete by School id
+    public void deleteSchoolById(@RequestParam Integer id){
+     schoolService.deleteSchoolById(id);
+    }
 
 //    @RequestMapping(value = "deleteAllSchool", method = RequestMethod.GET)                //delete all school
 //    public List<School> deleteAll(){

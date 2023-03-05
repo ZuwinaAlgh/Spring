@@ -39,8 +39,6 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
     @Query(value ="SELECT s from School s where s.updatedDate= :updatedDate")         //get School By updated Date
     School getSchoolByUpdatedDate(@Param("updatedDate") Date updatedDate);
 
-//    @Query(value = "UPDATE school s SET s.isActive=False Where s.id= :id")             //Delete query by id(Update)
-//    School deleteSchoolById(@Param("id") Integer id);
 
 
 //   @Query(value = "UPDATE from School s SET s.isActive=False")             //Delete All(Update)
