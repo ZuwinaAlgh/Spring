@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -31,6 +32,9 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
 
     @Query(value ="SELECT s From Student s Where s.id=(SELECT MAX(s.id) From Student s)")             //Query to get Latest Row
     List<Student> getLatestRowInStudent();
+
+    @Query(value="SELECT s From Student s Where s.createdDate>= :createdDate")                //get Student Created After Date
+    List<Student>  getStudentCreatedAfterDate(@Param("createdDate") Date createdDate);
 
 
 

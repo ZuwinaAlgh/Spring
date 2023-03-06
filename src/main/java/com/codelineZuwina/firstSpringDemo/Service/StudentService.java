@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -54,5 +58,11 @@ public class StudentService {
 
     }
 
+    public List<Student> getStudentCreatedAfterDate(String StringCreatedDate) throws ParseException {                //get Student Created After Date
+        DateFormat format = new SimpleDateFormat("yyyy-MM-DD");
+        Date date = format.parse(StringCreatedDate);
+        List<Student> studentList = studentRepository.getStudentCreatedAfterDate(date);
+        return studentList;
+    }
 
 }
