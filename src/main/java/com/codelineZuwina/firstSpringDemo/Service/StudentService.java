@@ -17,19 +17,19 @@ public class StudentService {
     @Autowired
     SchoolRepository schoolRepository;
 
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents(){                   //get All
         return studentRepository.getAllStudent();
-}
+    }
 
-    public Student getStudentById(Integer id){
+    public Student getStudentById(Integer id){                         // get Student by id
         Student student=studentRepository.getStudentById(id);
         return student;
     }
 
-  public Student getStudentByStudentName(String student_Name){
+    public Student getStudentByStudentName(String student_Name){                        //get By Student Name
         Student student=studentRepository.getStudentByStudentName(student_Name);
         return student;
-  }
+    }
 
 
     public List<Student> getStudentsBySchoolName(String schoolName){    //get students by school name
@@ -37,7 +37,12 @@ public class StudentService {
         Integer schoolId=school.getId();
         List<Student> studentList=studentRepository.getStudentBySchoolId(schoolId);
         return  studentList;
-  }
+    }
+
+    public List<Student> getAllStudentsIsActive() {                          //get all Student is Active
+        return studentRepository.getAllStudentsIsActive();
+
+    }
 
 
 }

@@ -11,17 +11,20 @@ import java.util.List;
 
 @Repository
 public interface StudentRepository extends CrudRepository<Student,Integer> {
-    @Query(value="SELECT s from Student s")
+    @Query(value="SELECT s from Student s")                    //get All
     List<Student> getAllStudent();
 
-    @Query(value="SELECT s from Student s Where s.id = :id")
+    @Query(value="SELECT s from Student s Where s.id = :id")                      // get Student by id
     Student getStudentById(@Param("id") Integer id);
 
-    @Query(value="SELECT s from Student s Where s.studentName = :studentName")
+    @Query(value="SELECT s from Student s Where s.studentName = :studentName")          //get By Student Name
     Student getStudentByStudentName(@Param("studentName") String student_Name);
 
-    @Query(value="SELECT st from Student st Where st.school.id= :id")
+    @Query(value="SELECT st from Student st Where st.school.id= :id")                  // get Students By SchoolId
     List<Student> getStudentBySchoolId(@Param("id") Integer id);
+
+    @Query(value="SELECT s from Student s Where s.isActive=True")                     //query to get all Student is active
+    List<Student> getAllStudentsIsActive();
 
 
 

@@ -50,5 +50,4 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
 
 
 
-
 }
