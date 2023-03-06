@@ -109,6 +109,17 @@ public class SchoolService {
         schoolRepository.save(school);
     }
 
+    public void updateSchool (Integer id,String schoolName, boolean isActive){                          //Update School
+        School school=schoolRepository.getSchoolById(id);
+        school.setSchoolName(schoolName);
+        school.setActive(true);
+        school.setCreatedDate(new Date());
+        schoolRepository.save(school);
+
+
+
+    }
+
 
 
 
