@@ -76,4 +76,11 @@ public class StudentService {
         return student;
     }
 
+    public Student getStudentByUpdatedDate(String updatedDate) throws ParseException {                      //get Student By Updated Date
+        DateFormat format = new SimpleDateFormat("yyyy-MM-DD");
+        Date date = format.parse(updatedDate);
+        Student student=studentRepository.getStudentByUpdatedDate(date);
+        return student;
+    }
+
 }
