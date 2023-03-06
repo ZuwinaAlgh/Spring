@@ -49,5 +49,10 @@ public class StudentService {
 
     }
 
+    public List<Student> getLatestRowInStudent() {                            // get Latest Row in Student table
+        return studentRepository.getLatestRowInStudent();
+
+    }
+
 
 }

@@ -58,4 +58,10 @@ public class StudentController {
         return studentList;
 
     }
+
+    @RequestMapping(value = "getLatestRowInStudent",method = RequestMethod.GET)        //get Latest Row in School
+    public List<Student> getLatestRowInStudent(){
+        List<Student> studentList=studentService.getLatestRowInStudent();
+        return studentList;
+    }
 }
