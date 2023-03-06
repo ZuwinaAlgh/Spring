@@ -6,7 +6,6 @@ import com.codelineZuwina.firstSpringDemo.Repositories.SchoolRepository;
 import com.codelineZuwina.firstSpringDemo.Repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -70,9 +69,11 @@ public class StudentService {
         return student;
     }
 
-//    public Student getStudentByCreatedDate(Date createdDate) {                      //get Student By Created Date
-//       Student student=studentRepository.getStudentByCreatedDate(createdDate);
-//        return student;
-//    }
+    public Student getStudentByCreatedDate(String createdDate) throws ParseException {                      //get Student By Created Date
+        DateFormat format = new SimpleDateFormat("yyyy-MM-DD");
+        Date date = format.parse(createdDate);
+        Student student=studentRepository.getStudentByCreatedDate(date);
+        return student;
+    }
 
 }

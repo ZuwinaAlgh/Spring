@@ -39,8 +39,8 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     @Query(value="SELECT s from Student s Where s.phoneNumber = :phoneNumber")          //get By Student by Student email
     Student getStudentByPhoneNumber(@Param("phoneNumber") Integer phoneNumber);
 
-//    @Query(value ="SELECT s from Student s where s.createdDate= :createdDate")         //get Student By CreatedDate
-//    Student getStudentByCreatedDate(@Param("createdDate") Date createdDate);
+    @Query(value ="SELECT s from Student s where s.createdDate= :createdDate")         //get Student By CreatedDate
+    Student getStudentByCreatedDate(@Param("createdDate") Date createdDate);
 
 
 

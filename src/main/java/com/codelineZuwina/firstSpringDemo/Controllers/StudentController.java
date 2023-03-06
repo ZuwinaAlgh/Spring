@@ -81,9 +81,9 @@ public class StudentController {
         return student;
     }
 
-//    @RequestMapping(value = "getStudentByCreatedDate",method = RequestMethod.GET)               //get School By Created Date
-//    public Student getStudentByCreatedDate(@RequestParam Date createdDate) {
-//        Student student= studentService.getStudentByCreatedDate(createdDate);
-//        return student;
-//    }
+    @RequestMapping(value = "getStudentByCreatedDate",method = RequestMethod.GET)               //get Student By Created Date
+    public Student getStudentByCreatedDate(@RequestParam String createdDate)throws ParseException {
+        Student student= studentService.getStudentByCreatedDate(createdDate);
+        return student;
+    }
 }
