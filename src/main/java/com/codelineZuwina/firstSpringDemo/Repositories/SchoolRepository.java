@@ -33,7 +33,7 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
     @Query(value = "UPDATE School s SET s.isActive=True Where s.isActive=False and s.id= :id")     //Update is Active
     School updateIsActive(@Param("id") Integer id);
 
-    @Query(value ="SELECT s from School s where s.createdDate= :createdDate")         //getSchoolByCreatedDate
+    @Query(value ="SELECT s from School s where s.createdDate= :createdDate")         //get School By CreatedDate
     School getSchoolByCreatedDate(@Param("createdDate") Date createdDate);
 
     @Query(value ="SELECT s from School s where s.updatedDate= :updatedDate")         //get School By updated Date
