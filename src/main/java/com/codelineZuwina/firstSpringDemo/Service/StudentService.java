@@ -44,5 +44,10 @@ public class StudentService {
 
     }
 
+    public List<Student> getAllStudentsIsInActive() {                          //get all Student is InActive
+        return studentRepository.getAllStudentsIsInActive();
+
+    }
+
 
 }
