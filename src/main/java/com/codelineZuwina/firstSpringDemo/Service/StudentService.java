@@ -83,4 +83,10 @@ public class StudentService {
         return student;
     }
 
+    public void deleteStudentById(Integer id) {                             // Delete Student by id
+        Student student = studentRepository.getStudentById(id);
+        student.setActive(true);
+        studentRepository.save(student);
+    }
+
 }

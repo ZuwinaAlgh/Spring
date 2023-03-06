@@ -92,4 +92,9 @@ public class StudentController {
         Student student= studentService.getStudentByUpdatedDate(updatedDate);
         return student;
     }
+
+    @RequestMapping(value = "deleteStudentById",method = RequestMethod.GET)                                   //delete by Student id
+    public void deleteStudentById(@RequestParam Integer id){
+        studentService.deleteStudentById(id);
+    }
 }
