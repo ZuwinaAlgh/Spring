@@ -101,6 +101,17 @@ public class SchoolService {
         schoolRepository.save(school);
     }
 
+    public void createSchool (String schoolName){                   //create School
+        School school=new School();
+        school.setSchoolName(schoolName);
+        school.setActive(true);
+        school.setCreatedDate(new Date());
+        schoolRepository.save(school);
+    }
+
+
+
+
 
 
 
