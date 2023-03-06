@@ -65,4 +65,14 @@ public class StudentService {
         return studentList;
     }
 
+    public Student getStudentByPhoneNumber(Integer phoneNumber){                        //get By Student by Student Email
+        Student student=studentRepository.getStudentByPhoneNumber(phoneNumber);
+        return student;
+    }
+
+//    public Student getStudentByCreatedDate(Date createdDate) {                      //get Student By Created Date
+//       Student student=studentRepository.getStudentByCreatedDate(createdDate);
+//        return student;
+//    }
+
 }

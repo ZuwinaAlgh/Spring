@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -34,7 +35,7 @@ public class StudentController {
         return student;
     }
 
-    //get student by student name
+
     @RequestMapping(value = "student/getByStudentName",method =RequestMethod.GET )                //get By Student Name
     public Student getStudentByStudentName(@RequestParam String student_Name) {
         Student student= studentService.getStudentByStudentName(student_Name);
@@ -73,4 +74,16 @@ public class StudentController {
         studentList=studentService.getStudentCreatedAfterDate(createdDate);
         return studentList;
     }
+
+    @RequestMapping(value = "getStudentByPhoneNumber",method =RequestMethod.GET )                //get By Student Name
+    public Student getStudentByPhoneNumber(@RequestParam Integer phoneNumber) {
+        Student student= studentService.getStudentByPhoneNumber(phoneNumber);
+        return student;
+    }
+
+//    @RequestMapping(value = "getStudentByCreatedDate",method = RequestMethod.GET)               //get School By Created Date
+//    public Student getStudentByCreatedDate(@RequestParam Date createdDate) {
+//        Student student= studentService.getStudentByCreatedDate(createdDate);
+//        return student;
+//    }
 }
