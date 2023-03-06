@@ -89,4 +89,8 @@ public class StudentService {
         studentRepository.save(student);
     }
 
+    public void deleteAllStudent() {                  // Delete All
+        studentRepository.deleteAllStudent();
+    }
+
 }

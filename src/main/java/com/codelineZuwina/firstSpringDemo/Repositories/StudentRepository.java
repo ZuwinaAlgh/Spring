@@ -2,11 +2,13 @@ package com.codelineZuwina.firstSpringDemo.Repositories;
 
 import com.codelineZuwina.firstSpringDemo.Models.School;
 import com.codelineZuwina.firstSpringDemo.Models.Student;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +46,11 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
 
     @Query(value ="SELECT s from Student s where s.updatedDate= :updatedDate")         //get Student By UpdatedDate
     Student getStudentByUpdatedDate(@Param("updatedDate") Date updatedDate);
+
+    @Modifying
+    @Transactional
+    @Query(value="UPDATE Student s SET s.isActive=False")                               //Delete All(Update)
+    void deleteAllStudent();
 
 
 

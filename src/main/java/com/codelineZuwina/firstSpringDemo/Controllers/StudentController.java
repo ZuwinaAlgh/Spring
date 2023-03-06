@@ -97,4 +97,10 @@ public class StudentController {
     public void deleteStudentById(@RequestParam Integer id){
         studentService.deleteStudentById(id);
     }
+
+
+    @RequestMapping(value = "deleteAllStudent", method = RequestMethod.GET)                //delete all Student
+    public void deleteAllStudent(){
+        studentService.deleteAllStudent();
+    }
 }
