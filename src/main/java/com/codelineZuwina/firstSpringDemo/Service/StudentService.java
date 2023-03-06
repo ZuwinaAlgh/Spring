@@ -93,4 +93,20 @@ public class StudentService {
         studentRepository.deleteAllStudent();
     }
 
+    public void deleteStudentByCreatedDate(String StringCreatedDate) throws ParseException{     //delete Student By Created Date
+        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
+        Date date=format.parse(StringCreatedDate);
+        Student student= studentRepository.getStudentByCreatedDate(date);
+        student.setActive(true);
+        studentRepository.save(student);
+    }
+
+    public void deleteStudentsByUpdatedDate(String StringUpdatedDate) throws ParseException{     //delete Students By Updated Date
+        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
+        Date date=format.parse(StringUpdatedDate);
+        Student student= studentRepository.getStudentByUpdatedDate(date);
+        student.setActive(true);
+        studentRepository.save(student);
+    }
+
 }

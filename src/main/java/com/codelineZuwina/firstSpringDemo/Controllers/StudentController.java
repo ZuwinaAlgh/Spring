@@ -103,4 +103,14 @@ public class StudentController {
     public void deleteAllStudent(){
         studentService.deleteAllStudent();
     }
+
+    @RequestMapping(value = "deleteStudentByCreatedDate", method = RequestMethod.POST)                   //delete Student By Created Date
+    public void deleteStudentByCreatedDate(@RequestParam String createdDate) throws ParseException{
+        studentService.deleteStudentByCreatedDate(createdDate);
+    }
+
+    @RequestMapping(value = "deleteStudentsByUpdatedDate", method = RequestMethod.POST)                   //delete Students By Updated Date
+    public void deleteStudentsByUpdatedDate(@RequestParam String updatedDate) throws ParseException{
+        studentService.deleteStudentsByUpdatedDate(updatedDate);
+    }
 }
