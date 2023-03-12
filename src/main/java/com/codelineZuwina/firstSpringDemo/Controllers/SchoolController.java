@@ -1,10 +1,8 @@
 package com.codelineZuwina.firstSpringDemo.Controllers;
 
 import com.codelineZuwina.firstSpringDemo.Models.School;
-import com.codelineZuwina.firstSpringDemo.RequestObject.SchoolRequestForCreateDateUpdate;
 import com.codelineZuwina.firstSpringDemo.Service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +26,7 @@ public class SchoolController {
         List<School> schools= schoolService.getAllSchools();
         return schools;
     }
+
 
     //get school by id
     @RequestMapping(value="school/getById", method =RequestMethod.GET)
@@ -118,6 +117,12 @@ public class SchoolController {
     public void updateSchool(@RequestParam Integer id, String schoolName, boolean isActive){                 //updated School
         schoolService.updateSchool(id,schoolName,isActive);
     }
+
+    @RequestMapping(value = "deleteAllSchoolsCreatedAfterDate", method = RequestMethod.POST)                          //deleteAllSchoolsCreatedAfterDate
+    public void deleteAllSchoolsCreatedAfterDate(@RequestParam String createdDate)throws ParseException{
+       schoolService.deleteAllSchoolsCreatedAfterDate(createdDate);
+    }
+
 
 
 

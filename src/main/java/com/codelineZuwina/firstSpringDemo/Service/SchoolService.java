@@ -116,13 +116,15 @@ public class SchoolService {
         school.setCreatedDate(new Date());
         schoolRepository.save(school);
 
-
-
     }
 
-
-
-
+    public void deleteAllSchoolsCreatedAfterDate(String createdDate)throws ParseException{
+        DateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse(createdDate);
+        List<School> schoolList =schoolRepository.deleteAllSchoolsCreatedAfterDate(date);
+        schoolList.stream().forEach(x -> x.setActive(false));
+        schoolRepository.saveAll(schoolList);
+    }
 
 
 

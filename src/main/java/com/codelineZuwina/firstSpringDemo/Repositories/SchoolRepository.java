@@ -48,6 +48,9 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
    @Query(value="SELECT s From School s Where s.createdDate>= :createdDate")                //get School Created After Date
    List<School>  getSchoolCreatedAfterDate(@Param("createdDate") Date createdDate);
 
+    @Query(value = "SELECT s from School s where s.createdDate> :createdDate")              //deleteAllSchoolsCreatedAfterDate
+    List<School> deleteAllSchoolsCreatedAfterDate(@Param("createdDate") Date createdDate);
+
 
 
 }
