@@ -3,6 +3,7 @@ package com.codelineZuwina.firstSpringDemo.Controllers;
 import com.codelineZuwina.firstSpringDemo.Models.School;
 import com.codelineZuwina.firstSpringDemo.Models.Student;
 import com.codelineZuwina.firstSpringDemo.Service.StudentService;
+import com.codelineZuwina.firstSpringDemo.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,29 +22,54 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @Autowired
+    SlackClient slackClient;
+
     //Student Apis
-    @RequestMapping(value = "Student/getAll",method = RequestMethod.GET)                 //get All
+    @RequestMapping(value = "getAll",method = RequestMethod.GET)                 //get All
     public List<Student> getAllStudent(){
         List<Student> students= studentService.getAllStudents();
+        for(Student student: students) {
+            slackClient.sendMessage(student.getId().toString());
+            slackClient.sendMessage(student.getStudentName().toString());
+            slackClient.sendMessage(student.getCreatedDate().toString());
+            slackClient.sendMessage(student.getUpdatedDate().toString());
+            slackClient.sendMessage(student.getActive().toString());
+        }
         return students;
     }
 
     //get student by id
-    @RequestMapping(value="student/getById", method =RequestMethod.GET)                   // get Student by id
+    @RequestMapping(value="getById", method =RequestMethod.GET)                   // get Student by id
     public Student getStudentById(@RequestParam Integer id){
         Student student= studentService.getStudentById(id);
+        slackClient.sendMessage(student.getId().toString());
+        slackClient.sendMessage(student.getStudentName().toString());
+        slackClient.sendMessage(student.getStudentAge().toString());
+        slackClient.sendMessage(student.getEmail().toString());
+        slackClient.sendMessage(student.getPhoneNumber().toString());
+        slackClient.sendMessage(student.getCreatedDate().toString());
+        slackClient.sendMessage(student.getUpdatedDate().toString());
+        slackClient.sendMessage(student.getActive().toString());
         return student;
     }
 
 
-    @RequestMapping(value = "student/getByStudentName",method =RequestMethod.GET )                //get By Student Name
+    @RequestMapping(value = "getByStudentName",method =RequestMethod.GET )                //get By Student Name
     public Student getStudentByStudentName(@RequestParam String student_Name) {
         Student student= studentService.getStudentByStudentName(student_Name);
+        slackClient.sendMessage(student.getId().toString());
+        slackClient.sendMessage(student.getStudentAge().toString());
+        slackClient.sendMessage(student.getEmail().toString());
+        slackClient.sendMessage(student.getPhoneNumber().toString());
+        slackClient.sendMessage(student.getCreatedDate().toString());
+        slackClient.sendMessage(student.getUpdatedDate().toString());
+        slackClient.sendMessage(student.getActive().toString());
         return student;
     }
 
     //get Students by school id
-    @RequestMapping(value = "student/getStudentBySchoolName",method = RequestMethod.GET)            // get Student by School Name
+    @RequestMapping(value = "getStudentBySchoolName",method = RequestMethod.GET)            // get Student by School Name
     public List<Student>getStudentsBySchoolName(@RequestParam String schoolName){
         return studentService.getStudentsBySchoolName(schoolName);
     }
@@ -51,6 +77,15 @@ public class StudentController {
     @RequestMapping(value = "getAllStudentsIsActive",method = RequestMethod.GET)                         //get all Student is active
     public List<Student> getAllStudentsIsActive(){
         List<Student> studentList= studentService.getAllStudentsIsActive();
+        for(Student student:studentList){
+            slackClient.sendMessage(student.getId().toString());
+            slackClient.sendMessage(student.getStudentAge().toString());
+            slackClient.sendMessage(student.getEmail().toString());
+            slackClient.sendMessage(student.getPhoneNumber().toString());
+            slackClient.sendMessage(student.getCreatedDate().toString());
+            slackClient.sendMessage(student.getUpdatedDate().toString());
+            slackClient.sendMessage(student.getActive().toString());
+        }
         return studentList;
 
     }

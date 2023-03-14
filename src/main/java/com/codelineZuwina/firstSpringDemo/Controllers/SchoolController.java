@@ -2,6 +2,7 @@ package com.codelineZuwina.firstSpringDemo.Controllers;
 
 import com.codelineZuwina.firstSpringDemo.Models.School;
 import com.codelineZuwina.firstSpringDemo.Service.SchoolService;
+import com.codelineZuwina.firstSpringDemo.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,31 +21,55 @@ public class SchoolController {
     @Autowired
     SchoolService schoolService;
 
+    @Autowired
+    SlackClient slackClient;
+
     //school Apis
-    @RequestMapping(value = "school/getAll",method = RequestMethod.GET)
+    @RequestMapping(value = "getAll",method = RequestMethod.GET)
     public List<School> getAllSchools(){
         List<School> schools= schoolService.getAllSchools();
+        for(School school: schools) {
+            slackClient.sendMessage(school.getId().toString());
+            slackClient.sendMessage(school.getSchoolName().toString());
+            slackClient.sendMessage(school.getCreatedDate().toString());
+            slackClient.sendMessage(school.getUpdatedDate().toString());
+            slackClient.sendMessage(school.getActive().toString());
+        }
         return schools;
     }
 
 
     //get school by id
-    @RequestMapping(value="school/getById", method =RequestMethod.GET)
+    @RequestMapping(value="getById", method =RequestMethod.GET)
     public School getSchoolById(@RequestParam Integer id){                          //@RequestParm(veraible come from the link that used it)
         School school=schoolService.getSchoolById(id);
-        return school;
-
+        slackClient.sendMessage(school.getId().toString());
+        slackClient.sendMessage(school.getSchoolName().toString());
+        slackClient.sendMessage(school.getCreatedDate().toString());
+        slackClient.sendMessage(school.getUpdatedDate().toString());
+        slackClient.sendMessage(school.getActive().toString());
+        return  school;
     }
 
-    @RequestMapping(value = "school/getBySchoolName",method = RequestMethod.GET)                     //get School by School name
+    @RequestMapping(value = "getBySchoolName",method = RequestMethod.GET)                     //get School by School name
     public School getSchoolByName(@RequestParam String School_name) {
         School school= schoolService.getSchoolByName(School_name);
+        slackClient.sendMessage(school.getId().toString());
+        slackClient.sendMessage(school.getCreatedDate().toString());
+        slackClient.sendMessage(school.getUpdatedDate().toString());
+        slackClient.sendMessage(school.getActive().toString());
         return school;
     }
 
     @RequestMapping(value = "getAllSchoolIsActive",method = RequestMethod.GET)                         //get all school is active
     public List<School> getAllSchoolsIsActive(){
         List<School> schoolList= schoolService.getAllSchoolsIsActive();
+        for(School school: schoolList){
+            slackClient.sendMessage(school.getId().toString());
+            slackClient.sendMessage(school.getSchoolName().toString());
+            slackClient.sendMessage(school.getCreatedDate().toString());
+            slackClient.sendMessage(school.getUpdatedDate().toString());
+        }
         return schoolList;
 
     }
@@ -52,6 +77,12 @@ public class SchoolController {
     @RequestMapping(value = "getAllSchoolsIsInActive",method = RequestMethod.GET)       //get All Schools is In Active
     public  List<School> getAllSchoolsIsInActive(){
         List<School>schoolList=schoolService.getAllSchoolIsInActive();
+        for (School school:schoolList){
+            slackClient.sendMessage(school.getId().toString());
+            slackClient.sendMessage(school.getSchoolName().toString());
+            slackClient.sendMessage(school.getCreatedDate().toString());
+            slackClient.sendMessage(school.getUpdatedDate().toString());
+        }
         return schoolList;
     }
 
@@ -59,6 +90,13 @@ public class SchoolController {
     @RequestMapping(value = "getLatestRowSchool",method = RequestMethod.GET)        //get Latest Row in School
     public List<School> getLatestRowInSchool(){
         List<School> school=schoolService.getLatestRowInSchool();
+        for(School school1: school) {
+            slackClient.sendMessage(school1.getId().toString());
+            slackClient.sendMessage(school1.getSchoolName().toString());
+            slackClient.sendMessage(school1.getCreatedDate().toString());
+            slackClient.sendMessage(school1.getUpdatedDate().toString());
+            slackClient.sendMessage(school1.getActive().toString());
+        }
         return school;
     }
 
@@ -71,12 +109,20 @@ public class SchoolController {
     @RequestMapping(value = "getSchoolByCreatedDate",method = RequestMethod.GET)               //get School By Created Date
     public School getSchoolByCreatedDate(@RequestParam Date createdDate) {
         School school= schoolService.getSchoolByCreatedDate(createdDate);
+        slackClient.sendMessage(school.getId().toString());
+        slackClient.sendMessage(school.getSchoolName().toString());
+        slackClient.sendMessage(school.getUpdatedDate().toString());
+        slackClient.sendMessage(school.getActive().toString());
         return school;
     }
 
-    @RequestMapping(value = "school/getSchoolByUpdatedDate",method = RequestMethod.GET)               //get School By updated date
+    @RequestMapping(value = "getSchoolByUpdatedDate",method = RequestMethod.GET)               //get School By updated date
     public School getSchoolByUpdatedDate(@RequestParam Date updatedDate) {
         School school= schoolService.getSchoolByUpdatedDate(updatedDate);
+        slackClient.sendMessage(school.getId().toString());
+        slackClient.sendMessage(school.getSchoolName().toString());
+        slackClient.sendMessage(school.getCreatedDate().toString());
+        slackClient.sendMessage(school.getActive().toString());
         return school;
     }
 
@@ -93,6 +139,13 @@ public class SchoolController {
     public List<School> getSchoolCreatedAfterDate(@RequestParam String createdDate) throws ParseException{         //get School Created After Date
         List<School> schoolList=new ArrayList<>();
         schoolList=schoolService.getSchoolCreatedAfterDate(createdDate);
+        for(School school:schoolList){
+            slackClient.sendMessage(school.getId().toString());
+            slackClient.sendMessage(school.getSchoolName().toString());
+            slackClient.sendMessage(school.getCreatedDate().toString());
+            slackClient.sendMessage(school.getUpdatedDate().toString());
+            slackClient.sendMessage(school.getActive().toString());
+        }
         return schoolList;
     }
 
