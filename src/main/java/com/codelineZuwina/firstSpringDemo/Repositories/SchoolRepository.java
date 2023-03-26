@@ -33,11 +33,11 @@ public interface SchoolRepository extends CrudRepository<School,Integer> {
     @Query(value = "UPDATE School s SET s.isActive=True Where s.isActive=False and s.id= :id")     //Update is Active
     School updateIsActive(@Param("id") Integer id);
 
-    @Query(value ="SELECT s from School s where s.createdDate= :createdDate")         //get School By CreatedDate
-    School getSchoolByCreatedDate(@Param("createdDate") Date createdDate);
+    @Query(value ="SELECT * from school where created_date like CONCAT (?1, '%') ", nativeQuery = true)         //get School By CreatedDate
+    List<School> getSchoolByCreatedDate( String created_date);
 
-    @Query(value ="SELECT s from School s where s.updatedDate= :updatedDate")         //get School By updated Date
-    School getSchoolByUpdatedDate(@Param("updatedDate") Date updatedDate);
+    @Query(value ="SELECT * from school where updated_date like CONCAT (?1, '%') ", nativeQuery = true)         //get School By updated Date
+    List<School> getSchoolByUpdatedDate(String updated_date);
 
 
    @Modifying

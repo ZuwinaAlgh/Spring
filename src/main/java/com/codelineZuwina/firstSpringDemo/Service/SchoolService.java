@@ -52,14 +52,14 @@ public class SchoolService {
         return school;
     }
 
-    public School getSchoolByCreatedDate(Date createdDate) {                      //get School By Created Date
-        School school = schoolRepository.getSchoolByCreatedDate(createdDate);
-        return school;
+    public List<School> getSchoolByCreatedDate(String created_date) {                      //get School By Created Date
+        List<School> schoolList = schoolRepository.getSchoolByCreatedDate(created_date);
+        return schoolList;
     }
 
-    public School getSchoolByUpdatedDate(Date updatedDate) {                      //get School By updated Date
-        School school = schoolRepository.getSchoolByUpdatedDate(updatedDate);
-        return school;
+    public List<School> getSchoolByUpdatedDate(String updated_date) {                      //get School By updated Date
+        List<School> schoolList = schoolRepository.getSchoolByUpdatedDate(updated_date);
+        return schoolList;
     }
 
     public void deleteSchoolById(Integer id) {                     // Delete by id
@@ -85,20 +85,16 @@ public class SchoolService {
         schoolRepository.save(school1);
     }
 
-     public void deleteSchoolsByCreatedDate(String StringCreatedDate) throws ParseException{     //delete Schools By Created Date
-        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
-        Date date=format.parse(StringCreatedDate);
-        School school= schoolRepository.getSchoolByCreatedDate(date);
-        school.setActive(true);
-        schoolRepository.save(school);
+     public void deleteSchoolsByCreatedDate(String created_date){     //delete Schools By Created Date
+         List<School> schoolList = schoolRepository.getSchoolByCreatedDate(created_date);
+         schoolList.stream().forEach(x -> x.setActive(false));
+         schoolRepository.saveAll(schoolList);
     }
 
-    public void deleteSchoolsByUpdatedDate(String StringUpdatedDate) throws ParseException{     //delete Schools By Updated Date
-        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
-        Date date=format.parse(StringUpdatedDate);
-        School school= schoolRepository.getSchoolByUpdatedDate(date);
-        school.setActive(true);
-        schoolRepository.save(school);
+    public void deleteSchoolsByUpdatedDate(String updated_date){     //delete Schools By Updated Date
+        List<School> schoolList = schoolRepository.getSchoolByCreatedDate(updated_date);
+        schoolList.stream().forEach(x -> x.setActive(false));
+        schoolRepository.saveAll(schoolList);
     }
 
     public void createSchool (String schoolName){                   //create School
@@ -126,18 +122,30 @@ public class SchoolService {
         schoolRepository.saveAll(schoolList);
     }
 
+    public StringBuilder formatSchoolObjectForSlack(School school){                //format School
+        StringBuilder sb =new StringBuilder();
+        sb.append("Id-->: *" +school.getId() + "*\n");
+        sb.append("School Name--> *" +school.getSchoolName() +"*\n");
+        sb.append("Created Date --> *" +school.getCreatedDate() +"*\n");
+        sb.append("Updated Date--> *" +school.getUpdatedDate() +"*\n");
+        sb.append("Is Active --> *" +school.getActive() +"*\n");
+        return sb;
+    }
+
+    public StringBuilder formatSchoolListForSlack(List<School> schoolList){
+        StringBuilder mainStringBuilder =new StringBuilder();
+        for (School schoolFormatList: schoolList){
+            mainStringBuilder.append(formatSchoolObjectForSlack(schoolFormatList));
+            mainStringBuilder.append("\n");
+        }
+        return  mainStringBuilder;
+    }
 
 
 
 
 
-//    public void setCreatedDateByUserInput(String stringDate, Integer id) throws ParseException {
-//        DateFormat formatter=new SimpleDateFormat("yyyy-MM-dd");
-//        Date javaDate=formatter.parse(stringDate);
-//        School school=schoolRepository.getSchoolById(id);
-//        school.setCreatedDate(javaDate);
-//        schoolRepository.save(school);
-//    }
+
 
 
 }
