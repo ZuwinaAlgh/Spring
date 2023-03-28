@@ -1,11 +1,15 @@
 package com.codelineZuwina.firstSpringDemo.Controllers;
 
+import com.codelineZuwina.firstSpringDemo.Models.School;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class SchoolControllerTest {
+    @Autowired
+    SchoolController schoolController;
 
     @Test
     void getAllSchools() {
@@ -13,7 +17,11 @@ class SchoolControllerTest {
     }
 
     @Test
-    void getSchoolById() {
+    void getSchoolByIdWhenId1() {
+        School schoolTest1;
+        schoolTest1=schoolController.getSchoolById(1);
+        String schoolName=schoolTest1.getSchoolName();
+        assertEquals("wee",schoolName);
     }
 
     @Test
