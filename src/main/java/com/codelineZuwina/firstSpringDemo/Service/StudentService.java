@@ -70,18 +70,15 @@ public class StudentService {
         return student;
     }
 
-    public Student getStudentByCreatedDate(String createdDate) throws ParseException {                      //get Student By Created Date
-        DateFormat format = new SimpleDateFormat("yyyy-MM-DD");
-        Date date = format.parse(createdDate);
-        Student student=studentRepository.getStudentByCreatedDate(date);
-        return student;
+    public List<Student> getStudentByCreatedDate(String created_date) {                      //get Student By Created Date
+        List<Student> studentList = studentRepository.getStudentByCreatedDate(created_date);
+        return studentList;
+
     }
 
-    public Student getStudentByUpdatedDate(String updatedDate) throws ParseException {                      //get Student By Updated Date
-        DateFormat format = new SimpleDateFormat("yyyy-MM-DD");
-        Date date = format.parse(updatedDate);
-        Student student=studentRepository.getStudentByUpdatedDate(date);
-        return student;
+    public List<Student> getStudentByUpdatedDate(String updated_date) {                      //get Student By Updated Date
+        List<Student> studentList = studentRepository.getStudentByUpdatedDate(updated_date);
+        return studentList;
     }
 
     public void deleteStudentById(Integer id) {                             // Delete Student by id
@@ -94,20 +91,37 @@ public class StudentService {
         studentRepository.deleteAllStudent();
     }
 
-    public void deleteStudentByCreatedDate(String StringCreatedDate) throws ParseException{     //delete Student By Created Date
-        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
-        Date date=format.parse(StringCreatedDate);
-        Student student= studentRepository.getStudentByCreatedDate(date);
-        student.setActive(true);
-        studentRepository.save(student);
+    public void deleteStudentByCreatedDate(String created_date){     //delete Student By Created Date
+        List<Student> studentList = studentRepository.getStudentByCreatedDate(created_date);
+        studentList.stream().forEach(x -> x.setActive(false));
+        studentRepository.saveAll(studentList);
     }
 
-    public void deleteStudentsByUpdatedDate(String StringUpdatedDate) throws ParseException{     //delete Students By Updated Date
-        DateFormat format=new SimpleDateFormat("yyyy-MM-DD");
-        Date date=format.parse(StringUpdatedDate);
-        Student student= studentRepository.getStudentByUpdatedDate(date);
-        student.setActive(true);
-        studentRepository.save(student);
+    public void deleteStudentsByUpdatedDate(String updated_date){     //delete Students By Updated Date
+        List<Student> studentList = studentRepository.getStudentByUpdatedDate(updated_date);
+        studentList.stream().forEach(x -> x.setActive(false));
+        studentRepository.saveAll(studentList);
+    }
+
+    public StringBuilder formatStudentObjectForSlack(Student student){                //format School
+        StringBuilder sb =new StringBuilder();
+        sb.append("Id-->: *" +student.getId() + "*\n");
+        sb.append("Student Name--> *" +student.getStudentName() +"*\n");
+        sb.append("Student Age --> *" +student.getStudentAge() +"*\n");
+        sb.append("Phone Number --> *" +student.getPhoneNumber() +"*\n");
+        sb.append("Created Date--> *" +student.getCreatedDate()+"*\n");
+        sb.append("Updated Date--> *" +student.getUpdatedDate() +"*\n");
+        sb.append("Is Active --> *" +student.getActive() +"*\n");
+        return sb;
+    }
+
+    public StringBuilder formatStudentListForSlack(List<Student> studentList){
+        StringBuilder mainStringBuilder =new StringBuilder();
+        for (Student studentFormatList: studentList){
+            mainStringBuilder.append(formatStudentObjectForSlack(studentFormatList));
+            mainStringBuilder.append("\n");
+        }
+        return  mainStringBuilder;
     }
 
 }

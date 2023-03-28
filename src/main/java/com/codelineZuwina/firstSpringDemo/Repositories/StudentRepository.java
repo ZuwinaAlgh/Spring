@@ -41,11 +41,11 @@ public interface StudentRepository extends CrudRepository<Student,Integer> {
     @Query(value="SELECT s from Student s Where s.phoneNumber = :phoneNumber")          //get By Student by Student email
     Student getStudentByPhoneNumber(@Param("phoneNumber") Integer phoneNumber);
 
-    @Query(value ="SELECT s from Student s where s.createdDate= :createdDate")         //get Student By CreatedDate
-    Student getStudentByCreatedDate(@Param("createdDate") Date createdDate);
+    @Query(value ="SELECT * from student where created_date like CONCAT (?1, '%') ", nativeQuery = true)         //get Student By CreatedDate
+    List<Student> getStudentByCreatedDate(String created_date);
 
-    @Query(value ="SELECT s from Student s where s.updatedDate= :updatedDate")         //get Student By UpdatedDate
-    Student getStudentByUpdatedDate(@Param("updatedDate") Date updatedDate);
+    @Query(value ="SELECT * from student where updated_date like CONCAT (?1, '%') ", nativeQuery = true)         //get Student By UpdatedDate
+    List<Student> getStudentByUpdatedDate(String updated_date);
 
     @Modifying
     @Transactional
