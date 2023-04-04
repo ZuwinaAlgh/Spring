@@ -21,9 +21,13 @@ public class Student extends BaseEntity{
     @JoinColumn(name="school_id", referencedColumnName = "id")
     School school;
 
+    public School getSchool() {
+        return school;
+    }
 
-
-
+    public void setSchool(School school) {
+        this.school = school;
+    }
 
     public Integer getId() {
         return id;
